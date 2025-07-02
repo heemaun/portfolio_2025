@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
+@font-face {
+  font-family: "ubuntu";
+  src: url("fonts/Ubuntu-Medium.ttf"), url("fonts/Ubuntu-MediumItalic.ttf"), url("fonts/Ubuntu-Regular.ttf"), url("fonts/Ubuntu-Bold.ttf"), url("fonts/Ubuntu-BoldItalic.ttf"), url("fonts/Ubuntu-Italic.ttf"), url("fonts/Ubuntu-Light.ttf"), url("fonts/Ubuntu-LightItalic.ttf");
+}
+*, *::after, *::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "ubuntu";
+}
+
+:root {
+  --rotate: 0;
+}
+
+html body {
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+}
+html body .container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  transform-origin: bottom right;
+}
+html body .container .panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: right bottom;
+}
+html body .container .panel h2 {
+  text-align: center;
+}
+html body .container .panel-1 {
+  background-color: red;
+}
+html body .container .panel-2 {
+  transform: rotate(90deg);
+  background-color: green;
+}
+html body .container .panel-3 {
+  transform: rotate(180deg);
+  background-color: blue;
+}
+html body .container .panel-4 {
+  transform: rotate(270deg);
+  background-color: yellow;
+}
+html body .container-0 {
+  transform: rotate(0deg);
+  transition: transform 1s ease-in-out;
+}
+html body .container-90 {
+  transform: rotate(-90deg);
+  transition: transform 1s ease-in-out;
+}
+html body .container-180 {
+  transform: rotate(-180deg);
+  transition: transform 1s ease-in-out;
+}
+html body .container-270 {
+  transform: rotate(-270deg);
+  transition: transform 1s ease-in-out;
+}
+html body .controllers {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  width: 50%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  -webkit-clip-path: circle(100% at 100% 100%);
+          clip-path: circle(100% at 100% 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: magenta;
+}
+html body .controllers .controller {
+  position: absolute;
+  width: 40%;
+  height: 100%;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  transform: translateX(50%) rotate(var(--rotate, 0deg));
+  transform-origin: bottom;
+}
+html body .controllers .controller span {
+  position: absolute;
+  height: 100%;
+  transform: rotate(var(--letter-rotate, 0deg));
+  transform-origin: bottom;
+  font-family: "DM Mono", monospace;
+}
+html body .controllers .controller-1 {
+  --rotate: -7.5deg;
+  background-color: red;
+}
+html body .controllers .controller-2 {
+  --rotate: -28deg;
+  background-color: green;
+}
+html body .controllers .controller-3 {
+  --rotate: -52deg;
+  background-color: blue;
+}
+html body .controllers .controller-4 {
+  --rotate: -78deg;
+  background-color: yellow;
+}
+html body .controllers .arrow-wrapper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10%;
+  height: 1%;
+  transform: translateX(50%);
+  background-color: orange;
+}
+html body .controllers .arrow-wrapper .arrow {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 9000%;
+  transform-origin: bottom;
+  transform: rotate(var(--arrow-rotate, -7.5deg));
+  transition: transform 0.5s cubic-bezier(0.2, 1, 0.7, 1.5);
+  -webkit-clip-path: polygon(45% 20%, 20% 40%, 50% 0, 80% 40%, 55% 20%, 55% 100%, 45% 100%);
+          clip-path: polygon(45% 20%, 20% 40%, 50% 0, 80% 40%, 55% 20%, 55% 100%, 45% 100%);
+  background-color: white;
+}/*# sourceMappingURL=style.css.map */
