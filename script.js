@@ -1,6 +1,14 @@
-// $(document).ready(function(){
-//     $(".text-div p span").css();
-// });
+$(document).ready(function(){
+    $("#to_the_top").fadeOut();
+});
+
+$(window).on('scroll', function () {
+    if ($(window).scrollTop() >= $(window).height() / 2) {
+        $("#to_the_top").fadeIn(); // Or use .addClass('show') etc.
+    } else {
+        $("#to_the_top").fadeOut(); // Optional: hide again if scrolling up
+    }
+});
 
 $("#to_the_top").click(function(){
     $('html, body').animate({

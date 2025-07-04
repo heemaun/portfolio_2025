@@ -26,8 +26,8 @@
 }
 
 :root{
-    --nav-text: hsl(42.9deg 74.4% 49.02%);
-    --nav-bg: hsl(282.46deg 78.46% 48.62%);
+    --nav-text: white;
+    --nav-bg: orange;
     --hero-bg: black;
     --hero-text: white;
     --button-text: lime;
@@ -76,12 +76,8 @@ a{
         animation: button-anim 3s linear 0s infinite forwards;
     }
     
-    // &::after{
-       
-    // }
-    
     &::before{
-        filter: blur(1em);
+        filter: blur(.25em);
         opacity: 1;       
     }
 }
@@ -93,6 +89,8 @@ html{
     body{
         width: 100%;
         overflow-x: clip;
+
+        background-color: black;
 
         .container{  
             .to-the-top{
@@ -132,9 +130,9 @@ html{
                 background-color: var(--nav-bg);
 
                 .logo{
-                    padding: .25em 1em;
+                    padding: 0em 1em;
 
-                    font-size: 2em;
+                    font-size: 1.5em;
                     font-weight: 900;
                     text-transform: uppercase;
 
@@ -167,7 +165,7 @@ html{
 
                                 text-align: center;
                                 font-weight: 700;
-                                font-size: 1.5em;
+                                font-size: 1.25em;
 
                                 color: var(--nav-text);
 
@@ -194,7 +192,7 @@ html{
                     transition: transform 1s ease-in-out;
 
                     svg{
-                        height: 3em;
+                        height: 1.75em;
                         aspect-ratio: 1;
 
                         fill: var(--nav-text);
@@ -257,7 +255,7 @@ html{
                     flex-direction: column;
                     justify-content: center;
                     align-items: stretch;
-                    gap: 2em;
+                    gap: .25em;
 
                     p{
                         display: flex;
@@ -296,10 +294,15 @@ html{
                         opacity: 0;
 
                         filter: drop-shadow(1px 1px 1px var(--hero-text));
+                        
+                        color: var(--nav-bg);
+                        
                         animation: hero-h1-anim .5s linear 4.25s 1 forwards;
                     }
 
                     .button{
+                        margin-top: .5em;
+
                         background-color: var(--hero-bg);
 
                         &:hover{
@@ -308,7 +311,7 @@ html{
 
                             &::after,&::before{
                                 background-image: lime;
-                                filter: blur(2em);
+                                filter: blur(1em);
                             }
                         }
                     }

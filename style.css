@@ -16,8 +16,8 @@
 }
 
 :root {
-  --nav-text: hsl(42.9deg 74.4% 49.02%);
-  --nav-bg: hsl(282.46deg 78.46% 48.62%);
+  --nav-text: white;
+  --nav-bg: orange;
   --hero-bg: black;
   --hero-text: white;
   --button-text: lime;
@@ -52,7 +52,7 @@ a {
   animation: button-anim 3s linear 0s infinite forwards;
 }
 .button::before {
-  filter: blur(1em);
+  filter: blur(0.25em);
   opacity: 1;
 }
 
@@ -63,6 +63,7 @@ html {
 html body {
   width: 100%;
   overflow-x: clip;
+  background-color: black;
 }
 html body .container .to-the-top {
   position: fixed;
@@ -94,8 +95,8 @@ html body .container header {
   background-color: var(--nav-bg);
 }
 html body .container header .logo {
-  padding: 0.25em 1em;
-  font-size: 2em;
+  padding: 0em 1em;
+  font-size: 1.5em;
   font-weight: 900;
   text-transform: uppercase;
   color: var(--nav-text);
@@ -124,7 +125,7 @@ html body .container header nav ul li a {
   padding: 0.25em 0;
   text-align: center;
   font-weight: 700;
-  font-size: 1.5em;
+  font-size: 1.25em;
   color: var(--nav-text);
 }
 html body .container header nav ul li a:hover {
@@ -143,7 +144,7 @@ html body .container header .header-toggler {
   transition: transform 1s ease-in-out;
 }
 html body .container header .header-toggler svg {
-  height: 3em;
+  height: 1.75em;
   aspect-ratio: 1;
   fill: var(--nav-text);
   stroke: var(--nav-text);
@@ -193,7 +194,7 @@ html body .container .hero .text-div {
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  gap: 2em;
+  gap: 0.25em;
 }
 html body .container .hero .text-div p {
   display: flex;
@@ -222,9 +223,11 @@ html body .container .hero .text-div h1 {
   text-transform: uppercase;
   opacity: 0;
   filter: drop-shadow(1px 1px 1px var(--hero-text));
+  color: var(--nav-bg);
   animation: hero-h1-anim 0.5s linear 4.25s 1 forwards;
 }
 html body .container .hero .text-div .button {
+  margin-top: 0.5em;
   background-color: var(--hero-bg);
 }
 html body .container .hero .text-div .button:hover {
@@ -233,7 +236,7 @@ html body .container .hero .text-div .button:hover {
 }
 html body .container .hero .text-div .button:hover::after, html body .container .hero .text-div .button:hover::before {
   background-image: lime;
-  filter: blur(2em);
+  filter: blur(1em);
 }
 html body .container .skills {
   height: 100vh;
