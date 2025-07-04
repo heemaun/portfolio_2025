@@ -1,12 +1,14 @@
-$(".controller").click(function(){
-    console.log($(this).css("--rotate")); 
-    
-    $("#arrow").css("--arrow-rotate",$(this).css("--rotate"));
+// $(document).ready(function(){
+//     $(".text-div p span").css();
+// });
 
-    $("#container").removeClass("container-0");
-    $("#container").removeClass("container-90");
-    $("#container").removeClass("container-180");
-    $("#container").removeClass("container-270");
+$("#to_the_top").click(function(){
+    $('html, body').animate({
+      scrollTop: 0
+    }, 'slow');
+});
 
-    $("#container").addClass($(this).attr("data-class"));
+$("#header_toggler").click(function(){
+    $("nav").toggleClass("nav-hide");
+    $(this).toggleClass("header-toggler-hide");
 });
