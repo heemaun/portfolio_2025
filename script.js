@@ -53,13 +53,8 @@ $("#gallery button,.gallery-close").click(function(){
     $("#"+$(this).attr("data-target")).toggleClass("gallery-details-hide");
 });
 
-$("#contacts .infos a").click(function(e){
-    // e.preventDefault();
-    // console.log($(this).attr("data-content"));
-    
-    const text = $(this).attr("data-content");
-    
-    navigator.clipboard.writeText(text)
+$("#contacts .infos a").click(function(e){        
+    navigator.clipboard.writeText($(this).attr("data-content"))
       .then(() => alert("Copied!"))
       .catch(err => console.error("Failed to copy:", err));
 });
