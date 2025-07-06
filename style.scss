@@ -53,32 +53,32 @@ a{
     padding: .25em 1em;
     border-radius: 2em;
 
-    display: block;
+    display: inline-block;
 
     text-align: center;
+    text-transform: uppercase;
     font-size: 1.5em;
     font-weight: 600;
 
     color: var(--button-text);
     background-color: var(--button-bg);
 
-    &::after,&::before{
+    &::before{
         content: '';
 
         position: absolute;
-        inset: -3px;
+        inset: 0px;
         z-index: -1;
+        opacity: 1;
 
         border-radius: 2em;
 
-        background-image: conic-gradient(from var(--button-angle,45deg),hsl(0, 100%, 64%),hsl(156, 100%, 50%),hsl(215, 100%, 50%),hsl(325, 100%, 50%),hsl(0, 100%, 64%));
+        filter: blur(.25em);
+
+        background-image: conic-gradient(from var(--button-angle,45deg),black,orange,black,orange,black);
+        // background-image: conic-gradient(from var(--button-angle,45deg),magenta,lime,orange,cyan,magenta);
 
         animation: button-anim 3s linear 0s infinite forwards;
-    }
-    
-    &::before{
-        filter: blur(.25em);
-        opacity: 1;       
     }
 }
 
@@ -91,6 +91,7 @@ html{
         overflow-x: clip;
 
         background-color: black;
+        color: white;
 
         .container{  
             .to-the-top{
@@ -149,13 +150,15 @@ html{
                     clip-path: polygon(100% 100%, 100% 0, 0 0, 0 100%);
                     transition: clip-path 1s ease-in-out;
                     
-                    background-color: var(--nav-bg);
+                    // background-color: var(--nav-bg);
 
                     ul{
                         display: flex;
                         flex-direction: column;
                         justify-content: flex-start;
                         align-items: stretch;
+
+                        backdrop-filter: blur(.25em);
 
                         li{
                             a{
@@ -165,7 +168,7 @@ html{
 
                                 text-align: center;
                                 font-weight: 700;
-                                font-size: 1.25em;
+                                font-size: 1.25em;     
 
                                 color: var(--nav-text);
 
@@ -210,11 +213,13 @@ html{
                 min-height: 100dvh;
                 width: 100%;                
 
-                display: grid;
-                grid-template-columns: auto;
-                grid-template-rows: auto auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: .5em;
 
-                padding: 0em 1em;
+                padding: 2em 0em 1em 0em;
 
                 color: var(--hero-text);
                 background-color: var(--hero-bg);
@@ -234,7 +239,8 @@ html{
                     &::after{
                         content: "";
                         position: absolute;
-                        top: 0; left: 0;
+                        top: 0;
+                        left: 0;
                         width: 100%;
                         height: 100%;
                         background: linear-gradient(to bottom, hsla(0, 0%, 100%, 0) 0%, hsla(0, 0%, 0%, 0.95) 100%);
@@ -242,12 +248,29 @@ html{
 
                     img{
                         object-fit: cover;
-                        width: 100%;
-                        aspect-ratio: 1;                        
+                        max-height: 40vh;
+                        width: 75%;
+                        aspect-ratio: 1; 
+                        opacity: 0; 
+
+                        animation: hero-h1-anim var(--duration) linear var(--delay) 1 forwards;
                     }
                 }
 
-                .text-div{
+                h1{
+                    white-space: wrap;
+                    text-align: center;
+                    text-transform: uppercase;
+                    opacity: 0;
+
+                    filter: drop-shadow(1px 1px 1px var(--hero-text));
+                    
+                    color: var(--nav-bg);
+                    
+                    animation: hero-h1-anim var(--duration) linear var(--delay) 1 forwards;
+                }
+
+                .top-text-div,.bottom-text-div{
                     position: relative;
                     z-index: 0;
 
@@ -286,31 +309,34 @@ html{
                             }
                         }
                     }
+                }
 
-                    h1{
-                        white-space: wrap;
-                        text-align: center;
-                        text-transform: uppercase;
-                        opacity: 0;
+                .button-container{
+                    position: relative;
+                    z-index: 0;
 
-                        filter: drop-shadow(1px 1px 1px var(--hero-text));
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    padding: .25em .5em;
+
+                    opacity: 0;
+
+                    animation: hero-button-anim var(--duration) ease-in-out var(--delay) 1 forwards;
+
+                    .button{  
+                        width: fit-content;
                         
                         color: var(--nav-bg);
-                        
-                        animation: hero-h1-anim .5s linear 4.25s 1 forwards;
-                    }
-
-                    .button{
-                        margin-top: .5em;
-
-                        background-color: var(--hero-bg);
-
+                        background-color: var(--hero-bg);   
+                    
                         &:hover{
-                            color: var(--hero-bg);
-                            background-color: var(--button-text);
+                            color: var(--nav-color);
+                            background-color: var(--nav-bg);
 
-                            &::after,&::before{
-                                background-image: lime;
+                            &::before{
+                                background: var(--nav-bg);
                                 filter: blur(1em);
                             }
                         }
@@ -835,5 +861,12 @@ html{
 
     to{
         --button-angle: 360deg;
+    }
+}
+
+@keyframes hero-button-anim {
+    to{
+        // clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        opacity: 1;
     }
 }
