@@ -46,10 +46,6 @@ ul{
 }
 
 .button{
-    position: relative;
-    width: 300px;
-    margin: 0 auto;
-
     padding: .25em 1em;
     border: 0em;
     border-radius: 2em;
@@ -73,11 +69,13 @@ html{
         width: 100%;
         overflow-x: clip;
 
-        background-color: var(--color-3);
-
+        background-color: hsl(from var(--color-3) h s calc(l - 7));
+                
         .container{  
             scroll-behavior: smooth;
             scroll-snap-type:mandatory;
+
+            background-color: var(--color-3);
 
             .to-the-top{
                 position: fixed;
@@ -116,6 +114,10 @@ html{
                 background-color: var(--color-1);
 
                 .logo{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
                     padding: 0em 1em;
 
                     svg{
@@ -167,7 +169,7 @@ html{
 
                                 color: var(--color-3);
 
-                                &:hover{
+                                &:hover,&:focus,&:focus-visible{
                                     text-decoration: underline;
 
                                     color: var(--color-1);
@@ -348,7 +350,7 @@ html{
                             content: '';
 
                             position: absolute;
-                            inset: 0px;
+                            inset: 0;
                             z-index: -1;
                             opacity: 1;
 
@@ -361,7 +363,7 @@ html{
                             animation: button-anim 3s linear 0s infinite forwards;
                         }
                     
-                        &:hover{
+                        &:hover,&:focus,&:focus-visible{
                             color: var(--nav-color);
                             background-color: var(--color-1);
 
@@ -426,10 +428,10 @@ html{
                                 z-index: 0;
 
                                 width: 100%;
-                                height: 12px;
+                                height: .75em;
 
-                                border: 1px solid;
-                                border-radius: 15px;
+                                border: .1em solid;
+                                border-radius: .75em;
 
                                 &::after{
                                     content: '';
@@ -441,8 +443,8 @@ html{
                                     width: 0%;
                                     z-index: 1;
 
-                                    border-radius: 15px;
-                                    border-right: 1px solid;
+                                    border-radius: .75em;
+                                    border-right: .1em solid;
 
                                     transition: width 3s ease-in-out 0s;
 
@@ -598,15 +600,15 @@ html{
                         padding: .25em;
 
                         svg{
-                            width: 2em;
-                            height: 2em;
+                            width: 1em;
+                            height: 1em;
 
                             fill: var(--color-1);
                             stroke: var(--color-1);
                         }
 
-                        &:hover,&:focus{
-                            outline: 2px solid;
+                        &:focus{
+                            outline: .125em solid;
                         }
                     }
                 }                               
@@ -621,15 +623,13 @@ html{
                     flex-direction: column;
                     justify-content: flex-start;
                     align-items: stretch;
-                    gap: 1em;
+                    gap: .5em;
 
                     width: 90%;
                     max-width: 500px;
                     padding: .5em;
                     border-radius: .5em;
                     margin: 0 auto;
-
-                    gap: .5em;
 
                     legend{
                         font-weight: 700;
@@ -766,8 +766,6 @@ html{
 
                                 clip-path: polygon(0 20%, 100% 20%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
 
-                                // transform: translateY(-100%);
-
                                 background-color: var(--color-1);
                                 color: var(--color-3);
                             }
@@ -779,401 +777,541 @@ html{
     }
 }
 
-// @media screen and (width >= 768px) {
-//     html{
-//         body{
-//             .container{  
-//                 .to-the-top{
+@media screen and (width >= 768px) {
+    h1{
+        font-size: 2.5em;
+    }
 
-//                 }
+    h2{
+        font-size: 2em;
+    }
 
-//                 .to-the-top-hide{
+    h3{
+        font-size: 1.75em;
+    }
 
-//                 }
+    // h4{
+
+    // }
+
+    html{
+        body{
+            .container{                  
+                header{
+                    height: 2.5em;
+
+                    align-items: center;
+
+                    .logo{
+                        svg{
+                            height: 2.5em;  
+                        }
+                    }
+
+                    nav{
+                        position: static;
+
+                        padding: 0em 1em;
+
+                        ul{
+                            flex-direction: row;
+                            justify-content: flex-end;
+                            gap: 1em;
+
+                            backdrop-filter: none;
+                            background-color: transparent;
+
+                            li{
+                                a{
+                                    display: inline-block;
+
+                                    color: var(--color-3);
+                                    background-color: transparent;
+
+                                    &:hover,&:focus,&:focus-visible{
+                                        color: var(--color-3);
+                                        background-color: transparent;
+                                        outline: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .nav-hide{
+                        clip-path: polygon(100% 100%, 100% 0, 0 0, 0 100%);
+                    }
+
+                    .header-toggler{
+                        display: none;
+                    }
+                }
+
+                .hero{
+                    .image-div{
+                        img{
+                            width: 90%;
+                            max-height: 50vh;
+                        }
+                    }                    
+
+                    .top-text-div,.bottom-text-div{
+                        p{
+                            span{
+                                font-size: 1.5em;
+                            }
+                        }
+                    }
+
+                    .button-container{
+                        .button{  
+                            font-size: 1.75em;                        
+                        }
+                    }
+                }
+
+                .skills{                   
+                    .item{                       
+                        ul{
+                            grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+                            gap: .5em .75em;
+
+                            li{
+                                aspect-ratio: 4;
+
+                                .text{
+                                    font-size: 1.5em;     
+                                }
+
+                                .bar{
+                                    height: .75em;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .gallery{
+                    display: grid;
+                    grid-template-columns: repeat(3,1fr);
+                    justify-content: center;
+                    align-content: center;
+                    gap: 1em;
+
+                    h2{
+                        grid-column: 1/-1;
+                    }
+
+                    .item{
+                        align-self: end;
+
+                        gap: 1em;
+
+                        svg{
+                            height: 5em;
+                            width: 5em;
+                        }
+
+                        .button{
+                            font-size: 1.25em;
+                        }
+
+                        // .gallery-details{
+                        //     .gallery-close{
+                        //         svg{
+                                    
+                        //         }
+                        //     }
+                        // }
+
+                        // .gallery-details-hide{
+                            
+                        // }
+                    }
+                }
+
+                .contacts{
+                    .mail-and-phone{                       
+                        a{
+                            font-size: 1.5em;
+
+                            svg{
+                                height: 1.5em;
+                                width: 1.5em;
+                            }
+                        }
+                    }                               
+
+                    form{
+                        padding: 1.5em;
+                        border-radius: 1.5em;
+
+                        legend{
+                            font-size: 1.75em;
+                        }
+
+                        .form-group{
+                            label{
+                                font-size: 1.25em;
+                            }
+
+                            input,textarea{
+                                font-size: 1.25em;
+                            }
+                        }
+
+                        .button-container{
+                            .button{
+                                font-size: 1.25em;
+                            }
+                        }
+                    }
+
+                    .others{
+                        a{
+                            font-size: 1.5em;
+                        }
+                    } 
+                }
+            }
+        }
+    }
+}
+
+@media screen and (width >= 1024px) {
+    html{
+        body{
+            .container{  
+                .hero{
+                    display: grid;
+                    grid-template-columns: repeat(2,1fr);
+                    grid-template-rows: repeat(4, 1fr);
+                    align-content: start;  
+                    
+                    padding: 0em 1em;
+
+                    .top-text-div{
+                        grid-column: span 1;
+                        grid-row: span 1;
+
+                        justify-self: center;
+                        align-self: end;
+                    }
+
+                    h1{
+                        grid-column: span 1;
+                        grid-row: span 1;
+
+                        align-self: center;
+                        justify-self: center;
+
+                        white-space: nowrap;
+                    }                    
+                    
+                    .bottom-text-div{
+                        grid-column: span 1;
+                        grid-row: span 1;
+
+                        justify-self: center;
+                        align-self: start;
+                    }
+
+                    .button-container{
+                        grid-column: span 1;
+                        grid-row: span 1;
+
+                        justify-self: center;
+                        align-self: start;
+                    }
+
+                    .image-div{ 
+                        position: relative;
+                        z-index: 1;
+
+                        justify-self: center;
+                        align-self: center;
+
+                        grid-column: span 1;
+                        grid-row: span 4;
+
+                        img{
+                            width: 100%;
+                            max-height: 90vh;
+                        }
+                    }
+                }
+
+                .skills{
+                    display: grid;
+                    grid-template-columns: repeat(3,1fr);
+                    justify-content: start;
+
+                    padding: 3em 1em;
+
+                    h2{
+                        grid-column: 1/-1;
+
+                        align-self: end;
+                    }
+
+                    .item{ 
+                        grid-column: span 1;
+
+                        padding: .5em;
+                        border-radius: .5em;
+
+                        background-color: hsl(from var(--color-3) h s calc(l - 7));
+                        
+                        ul{
+                            li{
+                                aspect-ratio: 10;
+                            }
+                        }
+                    }
+
+                    .programming-languages{
+                        grid-column: span 2;
+
+                        ul{
+                            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+                            li{
+                                aspect-ratio: 16;
+                            }
+                        }
+                    }
+                }
+
+                .gallery{
+                    gap: 2em 1em;
+
+                    padding: 0em 1em;
+
+                    // .item{
+                    //     .gallery-details{
+                    //         .gallery-close{
+                    //             svg{
+                                    
+                    //             }
+                    //         }
+                    //     }
+
+                    //     .gallery-details-hide{
+                            
+                    //     }
+                    // }
+                }
+
+                .contacts{
+                    display: grid;
+                    grid-template-columns: repeat(2,1fr);
+                    justify-content: center;
+                    align-content: start;
+                    gap: 1em 2em;
+
+                    padding: 3em 1em;
+
+                    h2{
+                        grid-column: 1/-1;
+                    }
+
+                    .mail-and-phone{                     
+                        order: 1;
+                        grid-column: span 1;
+                        grid-row: span 1;
+
+                        align-self: end;
+                        gap: 0em;
+
+                        border-bottom: .25em double;
+                    }                               
+
+                    form{
+                        order: 2;
+                        grid-column: span 1;
+                        grid-row: span 2;
+
+                        justify-self: center;
+                        align-self: start;
+
+                        // max-width: 100%;
+
+                        gap: .5em;
+
+                        padding: 1em;
+                        border-radius: 1em;
+
+                        .form-group{
+                            textarea{
+                                height: 3em;
+                            }
+                        }
+                    }
+
+                    .others{
+                        order: 3;
+                        grid-column: span 1;
+                        grid-row: span 1;
+
+                        align-self: start;
+
+                        border-top: .25em double;
+                    } 
+                }
+            }
+        }
+    }
+}
+
+@media screen and (width >= 1440px) {
+    h1{
+        font-size: 5em;
+    }
+
+    h2{
+        font-size: 3.25em;
+    }
+
+    h3{
+        font-size: 2em;
+    }
+
+    // h4{
+
+    // }
+
+    html{
+        body{
+            .container{ 
+                max-width: 1920px;
+                margin: 0 auto;
                 
-//                 header{
-//                     .logo{
-
-//                     }
-
-//                     nav{
-//                         ul{
-//                             li{
-//                                 a{
-
-//                                 }
-//                             }
-//                         }
-//                     }
-
-//                     .header-toggler{
-//                         svg{
-
-//                         }
-//                     }
-//                 }
-
-//                 .hero{
-//                     .image-div{
-//                         img{
-
-//                         }
-//                     }
-
-//                     .text-div{
-//                         p{
-//                             span{
-
-//                             }
-//                         }
-
-//                         h1{
-
-//                         }
-
-//                         .button{
-
-//                         }
-//                     }
-//                 }
-
-//                 .skills{
-//                     h2{
-
-//                     }
-
-//                     .item{
-//                         ul{
-//                             li{
-
-//                             }
-//                         }
-//                     }
-//                 }
-
-//                 .gallery{
-//                     h2{
-
-//                     }
-
-//                     .item{
-//                         h3{
-
-//                         }
-//                     }
-//                 }
-
-//                 .contacts{
-//                     .infos{
-//                         .rows{
-//                             .key{
-
-//                             }
-
-//                             .value{
-
-//                             }
-//                         }
-//                     }
-
-//                     .form{
-//                         legend{
-
-//                         }
-
-//                         .form-group{
-//                             label{
-
-//                             }
-
-//                             input{
-
-//                             }
-
-//                             textarea{
-
-//                             }
-
-//                             .error{
-
-//                             }
-//                         }
-
-//                         .button-container{
-//                             button{
-
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
-
-// @media screen and (width >= 1024px) {
-//     html{
-//         body{
-//             .container{  
-//                 .to-the-top{
-
-//                 }
-
-//                 .to-the-top-hide{
-
-//                 }
-                
-//                 header{
-//                     .logo{
-
-//                     }
-
-//                     nav{
-//                         ul{
-//                             li{
-//                                 a{
-
-//                                 }
-//                             }
-//                         }
-//                     }
-
-//                     .header-toggler{
-//                         svg{
-
-//                         }
-//                     }
-//                 }
-
-//                 .hero{
-//                     .image-div{
-//                         img{
-
-//                         }
-//                     }
-
-//                     .text-div{
-//                         p{
-//                             span{
-
-//                             }
-//                         }
-
-//                         h1{
-
-//                         }
-
-//                         .button{
-
-//                         }
-//                     }
-//                 }
-
-//                 .skills{
-//                     h2{
-
-//                     }
-
-//                     .item{
-//                         ul{
-//                             li{
-
-//                             }
-//                         }
-//                     }
-//                 }
-
-//                 .gallery{
-//                     h2{
-
-//                     }
-
-//                     .item{
-//                         h3{
-
-//                         }
-//                     }
-//                 }
-
-//                 .contacts{
-//                     .infos{
-//                         .rows{
-//                             .key{
-
-//                             }
-
-//                             .value{
-
-//                             }
-//                         }
-//                     }
-
-//                     .form{
-//                         legend{
-
-//                         }
-
-//                         .form-group{
-//                             label{
-
-//                             }
-
-//                             input{
-
-//                             }
-
-//                             textarea{
-
-//                             }
-
-//                             .error{
-
-//                             }
-//                         }
-
-//                         .button-container{
-//                             button{
-
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
-
-// @media screen and (width >= 1920px) {
-//     html{
-//         body{
-//             .container{  
-//                 .to-the-top{
-
-//                 }
-
-//                 .to-the-top-hide{
-
-//                 }
-                
-//                 header{
-//                     .logo{
-
-//                     }
-
-//                     nav{
-//                         ul{
-//                             li{
-//                                 a{
-
-//                                 }
-//                             }
-//                         }
-//                     }
-
-//                     .header-toggler{
-//                         svg{
-
-//                         }
-//                     }
-//                 }
-
-//                 .hero{
-//                     .image-div{
-//                         img{
-
-//                         }
-//                     }
-
-//                     .text-div{
-//                         p{
-//                             span{
-
-//                             }
-//                         }
-
-//                         h1{
-
-//                         }
-
-//                         .button{
-
-//                         }
-//                     }
-//                 }
-
-//                 .skills{
-//                     h2{
-
-//                     }
-
-//                     .item{
-//                         ul{
-//                             li{
-
-//                             }
-//                         }
-//                     }
-//                 }
-
-//                 .gallery{
-//                     h2{
-
-//                     }
-
-//                     .item{
-//                         h3{
-
-//                         }
-//                     }
-//                 }
-
-//                 .contacts{
-//                     .infos{
-//                         .rows{
-//                             .key{
-
-//                             }
-
-//                             .value{
-
-//                             }
-//                         }
-//                     }
-
-//                     .form{
-//                         legend{
-
-//                         }
-
-//                         .form-group{
-//                             label{
-
-//                             }
-
-//                             input{
-
-//                             }
-
-//                             textarea{
-
-//                             }
-
-//                             .error{
-
-//                             }
-//                         }
-
-//                         .button-container{
-//                             button{
-
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
+                header{
+                    nav{
+                        position: absolute;
+                        top: 0%;
+                        left: 50%;
+                        width: fit-content;
+                        height: 100%;
+                        transform: translateX(-50%);
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        // margin: 0 5em;
+
+                        ul{
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+                }
+
+                .hero{
+                    justify-content: center;
+                    align-content: center;
+
+                    .image-div{
+                        img{
+                            min-height: 95vh;
+                        }
+                    }
+
+                    .top-text-div{
+                        p{
+                            span{
+                                font-size: 3em;
+                            }
+                        }
+                    }
+
+                    .bottom-text-div{
+                        p{
+                            span{
+                                font-size: 3em;
+                            }
+                        }
+                    }
+
+                    .button-container{
+                        .button{  
+                            font-size: 3.5em;
+                        }
+                    }
+                }
+
+                .skills{
+                    grid-template-columns: repeat(4, 1fr);
+                    justify-content: center;
+                    align-content: center;
+
+                    .item{ 
+                        grid-column: span 1;
+                        
+                        ul{
+                            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+                            li{
+                                .text{
+                                    font-size: 1.75em;
+                                }
+                            }
+                        }
+                    }
+
+                    .programming-languages{
+                        grid-column: span 4;
+                    }
+                }
+
+                .gallery{
+                    .item{
+                        svg{
+                            height: 10em;
+                            width: 10em;
+                        }
+
+                        .button{
+                            font-size: 2em;
+                        }
+
+                        // .gallery-details{
+                        //     .gallery-close{
+                        //         svg{
+                                    
+                        //         }
+                        //     }
+                        // }
+
+                        // .gallery-details-hide{
+                            
+                        // }
+                    }
+                }
+
+                .contacts{
+                    align-content: center;                              
+
+                    form{
+                        padding: 1em;
+                        border-radius: 1em;
+
+                        gap: 1em;
+
+                        .form-group{
+                            gap: .5em;
+
+                            textarea{
+                                height: 8em;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 @keyframes to-the-top-anim {
     from{
@@ -1188,12 +1326,12 @@ html{
 @keyframes hero-text-anim {
     from{
         transform: translateX(0%);
-        border-left: 10px solid white;
+        border-left: .75em solid white;
     }
 
     to{
         transform: translateX(100%);
-        border-left: 0px solid white;
+        border-left: 0em solid white;
     }
 }
 
@@ -1219,13 +1357,6 @@ html{
 
 @keyframes hero-button-anim {
     to{
-        // clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
         opacity: 1;
     }
 }
-
-// @keyframes skill-anim {
-//     to{
-//         background-image: repeating-linear-gradient(-45deg, var(--color-3) 0px, var(--color-3) 5px, var(--color-1) 5px, var(--color-1) 10px);
-//     }
-// }

@@ -16,6 +16,14 @@ $("#to_the_top").click(function(){
     }, 'slow');
 });
 
+$("header nav ul li a").click(function(){
+    $('html, body').animate({
+      scrollTop: $($(this).attr("href")).offset().top
+    }, 'slow');
+    // console.log($(this).attr("href"));
+    
+});
+
 $("#header_toggler").click(function(){
     $("nav").toggleClass("nav-hide");
     $(this).toggleClass("header-toggler-hide");
@@ -53,8 +61,8 @@ $("#gallery button,.gallery-close").click(function(){
     $("#"+$(this).attr("data-target")).toggleClass("gallery-details-hide");
 });
 
-$("#contacts .infos a").click(function(e){        
-    navigator.clipboard.writeText($(this).attr("data-content"))
-      .then(() => alert("Copied!"))
-      .catch(err => console.error("Failed to copy:", err));
-});
+// $("#contacts .infos a").click(function(e){        
+//     navigator.clipboard.writeText($(this).attr("data-content"))
+//       .then(() => alert("Copied!"))
+//       .catch(err => console.error("Failed to copy:", err));
+// });

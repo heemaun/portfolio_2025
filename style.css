@@ -36,9 +36,6 @@ ul {
 }
 
 .button {
-  position: relative;
-  width: 300px;
-  margin: 0 auto;
   padding: 0.25em 1em;
   border: 0em;
   border-radius: 2em;
@@ -57,11 +54,12 @@ html {
 html body {
   width: 100%;
   overflow-x: clip;
-  background-color: var(--color-3);
+  background-color: hsl(from var(--color-3) h s calc(l - 7));
 }
 html body .container {
   scroll-behavior: smooth;
   scroll-snap-type: mandatory;
+  background-color: var(--color-3);
 }
 html body .container .to-the-top {
   position: fixed;
@@ -93,6 +91,9 @@ html body .container header {
   background-color: var(--color-1);
 }
 html body .container header .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0em 1em;
 }
 html body .container header .logo svg {
@@ -137,7 +138,7 @@ html body .container header nav ul li a {
   font-size: 1.25em;
   color: var(--color-3);
 }
-html body .container header nav ul li a:hover {
+html body .container header nav ul li a:hover, html body .container header nav ul li a:focus, html body .container header nav ul li a:focus-visible {
   text-decoration: underline;
   color: var(--color-1);
   background-color: var(--color-3);
@@ -271,7 +272,7 @@ html body .container .hero .button-container .button {
 html body .container .hero .button-container .button::before {
   content: "";
   position: absolute;
-  inset: 0px;
+  inset: 0;
   z-index: -1;
   opacity: 1;
   border-radius: 2em;
@@ -279,11 +280,11 @@ html body .container .hero .button-container .button::before {
   background-image: conic-gradient(from var(--button-angle, 45deg), var(--color-2), var(--color-1), var(--color-2), var(--color-1));
   animation: button-anim 3s linear 0s infinite forwards;
 }
-html body .container .hero .button-container .button:hover {
+html body .container .hero .button-container .button:hover, html body .container .hero .button-container .button:focus, html body .container .hero .button-container .button:focus-visible {
   color: var(--nav-color);
   background-color: var(--color-1);
 }
-html body .container .hero .button-container .button:hover::before {
+html body .container .hero .button-container .button:hover::before, html body .container .hero .button-container .button:focus::before, html body .container .hero .button-container .button:focus-visible::before {
   background: var(--color-1);
   filter: blur(1em);
 }
@@ -329,9 +330,9 @@ html body .container .skills .item ul li .bar {
   position: relative;
   z-index: 0;
   width: 100%;
-  height: 12px;
-  border: 1px solid;
-  border-radius: 15px;
+  height: 0.75em;
+  border: 0.1em solid;
+  border-radius: 0.75em;
 }
 html body .container .skills .item ul li .bar::after {
   content: "";
@@ -341,8 +342,8 @@ html body .container .skills .item ul li .bar::after {
   height: 100%;
   width: 0%;
   z-index: 1;
-  border-radius: 15px;
-  border-right: 1px solid;
+  border-radius: 0.75em;
+  border-right: 0.1em solid;
   transition: width 3s ease-in-out 0s;
   background-image: repeating-linear-gradient(-45deg, var(--color-1) 0px, var(--color-1) 5px, var(--color-3) 5px, var(--color-3) 10px);
 }
@@ -456,13 +457,13 @@ html body .container .contacts .mail-and-phone a {
   padding: 0.25em;
 }
 html body .container .contacts .mail-and-phone a svg {
-  width: 2em;
-  height: 2em;
+  width: 1em;
+  height: 1em;
   fill: var(--color-1);
   stroke: var(--color-1);
 }
-html body .container .contacts .mail-and-phone a:hover, html body .container .contacts .mail-and-phone a:focus {
-  outline: 2px solid;
+html body .container .contacts .mail-and-phone a:focus {
+  outline: 0.125em solid;
 }
 html body .container .contacts form {
   isolation: isolate;
@@ -472,13 +473,12 @@ html body .container .contacts form {
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  gap: 1em;
+  gap: 0.5em;
   width: 90%;
   max-width: 500px;
   padding: 0.5em;
   border-radius: 0.5em;
   margin: 0 auto;
-  gap: 0.5em;
 }
 html body .container .contacts form legend {
   font-weight: 700;
@@ -585,6 +585,325 @@ html body .container .contacts .others a:hover::after, html body .container .con
   color: var(--color-3);
 }
 
+@media screen and (width >= 768px) {
+  h1 {
+    font-size: 2.5em;
+  }
+  h2 {
+    font-size: 2em;
+  }
+  h3 {
+    font-size: 1.75em;
+  }
+  html body .container header {
+    height: 2.5em;
+    align-items: center;
+  }
+  html body .container header .logo svg {
+    height: 2.5em;
+  }
+  html body .container header nav {
+    position: static;
+    padding: 0em 1em;
+  }
+  html body .container header nav ul {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 1em;
+    -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+    background-color: transparent;
+  }
+  html body .container header nav ul li a {
+    display: inline-block;
+    color: var(--color-3);
+    background-color: transparent;
+  }
+  html body .container header nav ul li a:hover, html body .container header nav ul li a:focus, html body .container header nav ul li a:focus-visible {
+    color: var(--color-3);
+    background-color: transparent;
+    outline: none;
+  }
+  html body .container header .nav-hide {
+    -webkit-clip-path: polygon(100% 100%, 100% 0, 0 0, 0 100%);
+            clip-path: polygon(100% 100%, 100% 0, 0 0, 0 100%);
+  }
+  html body .container header .header-toggler {
+    display: none;
+  }
+  html body .container .hero .image-div img {
+    width: 90%;
+    max-height: 50vh;
+  }
+  html body .container .hero .top-text-div p span, html body .container .hero .bottom-text-div p span {
+    font-size: 1.5em;
+  }
+  html body .container .hero .button-container .button {
+    font-size: 1.75em;
+  }
+  html body .container .skills .item ul {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.5em 0.75em;
+  }
+  html body .container .skills .item ul li {
+    aspect-ratio: 4;
+  }
+  html body .container .skills .item ul li .text {
+    font-size: 1.5em;
+  }
+  html body .container .skills .item ul li .bar {
+    height: 0.75em;
+  }
+  html body .container .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-content: center;
+    gap: 1em;
+  }
+  html body .container .gallery h2 {
+    grid-column: 1/-1;
+  }
+  html body .container .gallery .item {
+    align-self: end;
+    gap: 1em;
+  }
+  html body .container .gallery .item svg {
+    height: 5em;
+    width: 5em;
+  }
+  html body .container .gallery .item .button {
+    font-size: 1.25em;
+  }
+  html body .container .contacts .mail-and-phone a {
+    font-size: 1.5em;
+  }
+  html body .container .contacts .mail-and-phone a svg {
+    height: 1.5em;
+    width: 1.5em;
+  }
+  html body .container .contacts form {
+    padding: 1.5em;
+    border-radius: 1.5em;
+  }
+  html body .container .contacts form legend {
+    font-size: 1.75em;
+  }
+  html body .container .contacts form .form-group label {
+    font-size: 1.25em;
+  }
+  html body .container .contacts form .form-group input, html body .container .contacts form .form-group textarea {
+    font-size: 1.25em;
+  }
+  html body .container .contacts form .button-container .button {
+    font-size: 1.25em;
+  }
+  html body .container .contacts .others a {
+    font-size: 1.5em;
+  }
+}
+@media screen and (width >= 1024px) {
+  html body .container .hero {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    align-content: start;
+    padding: 0em 1em;
+  }
+  html body .container .hero .top-text-div {
+    grid-column: span 1;
+    grid-row: span 1;
+    justify-self: center;
+    align-self: end;
+  }
+  html body .container .hero h1 {
+    grid-column: span 1;
+    grid-row: span 1;
+    align-self: center;
+    justify-self: center;
+    white-space: nowrap;
+  }
+  html body .container .hero .bottom-text-div {
+    grid-column: span 1;
+    grid-row: span 1;
+    justify-self: center;
+    align-self: start;
+  }
+  html body .container .hero .button-container {
+    grid-column: span 1;
+    grid-row: span 1;
+    justify-self: center;
+    align-self: start;
+  }
+  html body .container .hero .image-div {
+    position: relative;
+    z-index: 1;
+    justify-self: center;
+    align-self: center;
+    grid-column: span 1;
+    grid-row: span 4;
+  }
+  html body .container .hero .image-div img {
+    width: 100%;
+    max-height: 90vh;
+  }
+  html body .container .skills {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: start;
+    padding: 3em 1em;
+  }
+  html body .container .skills h2 {
+    grid-column: 1/-1;
+    align-self: end;
+  }
+  html body .container .skills .item {
+    grid-column: span 1;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background-color: hsl(from var(--color-3) h s calc(l - 7));
+  }
+  html body .container .skills .item ul li {
+    aspect-ratio: 10;
+  }
+  html body .container .skills .programming-languages {
+    grid-column: span 2;
+  }
+  html body .container .skills .programming-languages ul {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  html body .container .skills .programming-languages ul li {
+    aspect-ratio: 16;
+  }
+  html body .container .gallery {
+    gap: 2em 1em;
+    padding: 0em 1em;
+  }
+  html body .container .contacts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-content: start;
+    gap: 1em 2em;
+    padding: 3em 1em;
+  }
+  html body .container .contacts h2 {
+    grid-column: 1/-1;
+  }
+  html body .container .contacts .mail-and-phone {
+    order: 1;
+    grid-column: span 1;
+    grid-row: span 1;
+    align-self: end;
+    gap: 0em;
+    border-bottom: 0.25em double;
+  }
+  html body .container .contacts form {
+    order: 2;
+    grid-column: span 1;
+    grid-row: span 2;
+    justify-self: center;
+    align-self: start;
+    gap: 0.5em;
+    padding: 1em;
+    border-radius: 1em;
+  }
+  html body .container .contacts form .form-group textarea {
+    height: 3em;
+  }
+  html body .container .contacts .others {
+    order: 3;
+    grid-column: span 1;
+    grid-row: span 1;
+    align-self: start;
+    border-top: 0.25em double;
+  }
+}
+@media screen and (width >= 1440px) {
+  h1 {
+    font-size: 5em;
+  }
+  h2 {
+    font-size: 3.25em;
+  }
+  h3 {
+    font-size: 2em;
+  }
+  html body .container {
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+  html body .container header nav {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 100%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  html body .container header nav ul {
+    justify-content: center;
+    align-items: center;
+  }
+  html body .container .hero {
+    justify-content: center;
+    align-content: center;
+  }
+  html body .container .hero .image-div img {
+    min-height: 95vh;
+  }
+  html body .container .hero .top-text-div p span {
+    font-size: 3em;
+  }
+  html body .container .hero .bottom-text-div p span {
+    font-size: 3em;
+  }
+  html body .container .hero .button-container .button {
+    font-size: 3.5em;
+  }
+  html body .container .skills {
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    align-content: center;
+  }
+  html body .container .skills .item {
+    grid-column: span 1;
+  }
+  html body .container .skills .item ul {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  html body .container .skills .item ul li .text {
+    font-size: 1.75em;
+  }
+  html body .container .skills .programming-languages {
+    grid-column: span 4;
+  }
+  html body .container .gallery .item svg {
+    height: 10em;
+    width: 10em;
+  }
+  html body .container .gallery .item .button {
+    font-size: 2em;
+  }
+  html body .container .contacts {
+    align-content: center;
+  }
+  html body .container .contacts form {
+    padding: 1em;
+    border-radius: 1em;
+    gap: 1em;
+  }
+  html body .container .contacts form .form-group {
+    gap: 0.5em;
+  }
+  html body .container .contacts form .form-group textarea {
+    height: 8em;
+  }
+}
 @keyframes to-the-top-anim {
   from {
     transform: translateY(-0.5em);
@@ -596,11 +915,11 @@ html body .container .contacts .others a:hover::after, html body .container .con
 @keyframes hero-text-anim {
   from {
     transform: translateX(0%);
-    border-left: 10px solid white;
+    border-left: 0.75em solid white;
   }
   to {
     transform: translateX(100%);
-    border-left: 0px solid white;
+    border-left: 0em solid white;
   }
 }
 @keyframes hero-h1-anim {
